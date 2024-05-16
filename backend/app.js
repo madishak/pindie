@@ -9,7 +9,7 @@ const cors = require("./middlewares/cors.js");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-const PORT = 3002;
+const PORT = 3001;
 
 connectToDatabase();
 

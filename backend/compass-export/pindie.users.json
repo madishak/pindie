@@ -1,5 +1,31 @@
 [{
   "_id": {
+    "$oid": "66262c9986f49f278783c182"
+  },
+  "username": "aski",
+  "email": "aski@example.ru",
+  "password": "ilovehtml"
+},
+{
+  "_id": {
+    "$oid": "6630f3f2990a0b614c89f43f"
+  },
+  "username": "aski@example.com",
+  "email": "mad@example.com",
+  "password": "ilovehtml",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6638d53c86f2412afc90c705"
+  },
+  "username": "aski@example.com",
+  "email": "gs@m.ru",
+  "password": "ilovehtml",
+  "__v": 0
+},
+{
+  "_id": {
     "$oid": "6606b19ef99cd7a67132aaf6"
   },
   "username": "aski",
