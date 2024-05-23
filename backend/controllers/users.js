@@ -34,5 +34,5 @@ module.exports = {
   sendUserCreated,
   sendUserUpdated,
   sendUserDeleted,
-  sendMe
+  sendMe,
 };

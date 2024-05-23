@@ -4,35 +4,35 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
     required: true,
-    minlength: 8
-  }
+  },
 });
 
-userSchema.statics.findUserByCredentials = function(email, password) {
+userSchema.statics.findUserByCredentials = function (email, password) {
   console.log(email, password)
-  return this.findOne({ email }).then(user => {
+  return this.findOne({ email }).then((user) => {
+    console.log(user)
     if (!user) {
       return Promise.reject(new Error("Неправильные почта или пароль"));
     }
-    console.log(password, user.password, bcrypt.compare(password, user.password), password === user.password)
-    return bcrypt.compare(password, user.password).then(matched => {
+    console.log(password, user.password, bcrypt.compare(password, user.password))
+    return bcrypt.compare(password, user.password).then((matched) => {
       console.log(matched)
       // if (!matched) {
       //   return Promise.reject(new Error("Неправильные почта или пароль"));
       // }
-
-      return user; // теперь user доступен
+      return user;
     });
+ 
   });
 };
 

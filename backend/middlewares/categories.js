@@ -1,7 +1,7 @@
 const categories = require("../models/category");
 
 const findAllCategories = async (req, res, next) => {
-  console.log("GET /api/categories");
+  console.log("GET /categories");
   req.categoriesArray = await categories.find({});
   next();
 };
@@ -12,7 +12,7 @@ const createCategory = async (req, res, next) => {
     req.category = await categories.create(req.body);
     next();
   } catch (error) {
-    res.status(400).send("Error creating category");
+    res.status(400).send({ message: "Error creating category" });
   }
 };
 
@@ -25,45 +25,43 @@ const checkEmptyName = async (req, res, next) => {
 };
 
 const checkIsCategoryExists = async (req, res, next) => {
-  const isInArray = req.categoriesArray.find(category => {
+  const isInArray = req.categoriesArray.find((category) => {
     return req.body.name === category.name;
   });
   if (isInArray) {
-    res
-      .status(400)
-      .send({ message: "Категория с таким названием уже существует" });
+    res.status(400).send({ message: "Категория с таким названием уже существует" });
   } else {
     next();
   }
 };
 
 const findCategoryById = async (req, res, next) => {
-  console.log("GET /api/categories/:id");
+  console.log("GET /categories/:id");
   try {
     req.category = await categories.findById(req.params.id);
     next();
   } catch (error) {
-    res.status(404).send("Category not found");
+    res.status(404).send({ message: "Category not found" });
   }
 };
 
 const updateCategory = async (req, res, next) => {
-  console.log("PUT /api/categories/:id");
+  console.log("PUT /categories/:id");
   try {
     req.category = await categories.findByIdAndUpdate(req.params.id, req.body);
     next();
   } catch (error) {
-    res.status(400).send("Error updating category");
+    res.status(400).send({ message: "Error updating category" });
   }
 };
 
 const deleteCategory = async (req, res, next) => {
-  console.log("DELETE /api/categories/:id");
+  console.log("DELETE /categories/:id");
   try {
     req.category = await categories.findByIdAndDelete(req.params.id);
     next();
   } catch (error) {
-    res.status(400).send("Error deleting category");
+    res.status(400).send({ message: "Error deleting category" });
   }
 };
 
@@ -74,5 +72,5 @@ module.exports = {
   updateCategory,
   deleteCategory,
   checkIsCategoryExists,
-  checkEmptyName
+  checkEmptyName,
 };
